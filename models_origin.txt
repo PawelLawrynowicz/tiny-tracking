@@ -1,0 +1,5 @@
+efficientdet-lite0_bifpn_maxpool2x2_relu_ti-lite        https://github.com/google/automl
+ssdlite_mobiledet_dsp_320x320_coco_20200519             https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1_detection_zoo.md
+ssdlite_mobilenet_v2_coco_20180509                      https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1_detection_zoo.md
+yolox_tiny_lite_416x416_20220217_model                  https://github.com/open-mmlab/mmdetection
+YOLOv8n                                                 https://github.com/ultralytics/ultralytics

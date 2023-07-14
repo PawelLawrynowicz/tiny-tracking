@@ -1,6 +1,6 @@
 # TODO
 [x] get models and run inference
-[ ] add class names to yolox output and chaning colors (same as in ssdmobilenet)
+[x] add class names to yolox output and chaning colors (same as in ssdmobilenet)
 [ ] clean up code
 [ ] add nms to mobiledet
 [ ] test on COCO
