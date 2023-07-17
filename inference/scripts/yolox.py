@@ -5,9 +5,7 @@ from common import get_labels, account_for_all_classes
 
 
 def yolox_inference(img_path):
-    LABEL_PATH = '../coco_labels_actual.txt'
-    MODEL_PATH = '../../tflite_models/float32/yolox-tiny.tflite'
-    labels = get_labels(LABEL_PATH)
+    MODEL_PATH = '../../tflite_models/float32/yolox_nano.tflite'
 
     interpreter = tf.lite.Interpreter(model_path=MODEL_PATH)
     interpreter.allocate_tensors()
