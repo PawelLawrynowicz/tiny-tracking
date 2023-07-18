@@ -1,0 +1,5 @@
+efficientdet-lite0                                      https://tfhub.dev/tensorflow/efficientdet/lite0/detection/1
+ssdlite_mobiledet_dsp_320x320_coco_20200519             https://github.com/TexasInstruments/edgeai-modelzoo/tree/master/models/vision/detection/coco/tf1-models
+yolox_nano_ti_lite_26p1_41p8                            https://github.com/TexasInstruments/edgeai-modelzoo/tree/master/models/vision/detection/coco/edgeai-yolox
+YOLOv8n                                                 https://github.com/ultralytics/ultralytics
+ssdlite_mobilenet_v2_coco_20180509                      https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1_detection_zoo.md

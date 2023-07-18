@@ -1,11 +1,11 @@
 import cv2
 import tensorflow as tf
 import numpy as np
-from common import get_labels, account_for_all_classes
+from common import fix_missing_labels, preprocess_image
 
 
 def yolov8_inference(img_path):
-    MODEL_PATH = '../../tflite_models/float32/yolov8n.tflite'
+    MODEL_PATH = '/home/pwl/Projects/tiny-tracking/tflite_models/quantized/yolov8_nano_dynamic_quant.tflite'
 
     interpreter = tf.lite.Interpreter(model_path=MODEL_PATH)
     interpreter.allocate_tensors()
@@ -13,18 +13,13 @@ def yolov8_inference(img_path):
     input_details = interpreter.get_input_details()
     output_details = interpreter.get_output_details()
     input_shape = input_details[0]['shape']
-    img_shape = tuple(input_shape[1:3])
+    input_img_shape = tuple(input_shape[1:3])
     input_type = input_details[0]['dtype']
 
-    img = tf.io.read_file(img_path)
-    img = tf.io.decode_image(img, channels=3)
-    original_img = img.numpy()
-    if input_type == np.uint8:
-        img = tf.image.convert_image_dtype(img, tf.uint8)
-    else:
-        img = tf.image.convert_image_dtype(img, tf.float32)
-    scaled_img = tf.image.resize(img, img_shape)
-    scaled_img = scaled_img[tf.newaxis, :]
+    original_img, scaled_img = preprocess_image(
+        img_path, input_img_shape, input_type)
+
+    scaled_img /= 255.0
 
     interpreter.set_tensor(input_details[0]['index'], scaled_img)
     interpreter.invoke()
@@ -56,7 +51,9 @@ def yolov8_inference(img_path):
     class_ids = class_ids[nms_idxs]
     scores = scores[nms_idxs]
 
-    class_ids = account_for_all_classes(class_ids)
+    fix_missing_labels(class_ids)
+
+    class_ids += 1
 
     detections = list()
 

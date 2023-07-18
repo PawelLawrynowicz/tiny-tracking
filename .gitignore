@@ -1,3 +1,5 @@
 .vscode
 COCO
 inference/__pycache__
+MOT20
+source_models
